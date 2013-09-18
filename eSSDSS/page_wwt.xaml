@@ -1,0 +1,14 @@
+﻿<Page x:Class="eSSDSS.page_wwt"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="860" d:DesignWidth="1010"
+	Title="page_wwt" xmlns:my="http://schemas.microsoft.com/surface/2008">
+
+    <Grid Height="820" Width="1030">
+        <WebBrowser Height="620" HorizontalAlignment="Left" Margin="101,124,0,0" Name="wwt_web" VerticalAlignment="Top" Width="820" Initialized="wwt_web_Initialized" />
+        <my:SurfaceButton BorderBrush="#FF838383" Content="Explore!" Height="65" HorizontalAlignment="Right" Margin="0,12,502,0" Name="but_explore" VerticalAlignment="Top" Width="85" Click="surfaceButton1_Click" />
+    </Grid>
+</Page>
