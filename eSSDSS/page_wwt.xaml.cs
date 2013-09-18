@@ -32,7 +32,9 @@ namespace eSSDSS
 
         private void surfaceButton1_Click(object sender, RoutedEventArgs e)
         {
-            eSSDSS.SurfaceWindow1.content_frame.Source = new Uri("page_sdss.xaml", UriKind.RelativeOrAbsolute);
+            Window win = cWindow.WindowByName();
+            System.Windows.Controls.Frame cframe = (System.Windows.Controls.Frame)win.FindName("content_frame");
+            cframe.Source = new Uri("page_sdss.xaml", UriKind.RelativeOrAbsolute);
         }
 
         private void wwt_web_Initialized(object sender, EventArgs e)
