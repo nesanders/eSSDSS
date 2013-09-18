@@ -116,17 +116,20 @@ namespace eSSDSS
             //String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             //String myfile = System.IO.Path.Combine(appdir, "wwt_html5.htm");
             //this.wwt_web.Navigate(String.Format("file:///{0}", myfile));
-            this.wwt_web.Navigate(@"http://www.worldwidetelescope.org/docs/Samples/wwtwebclientsimpleUIHtml5.html");
+            wwt_web.Source = new Uri(@"http://www.worldwidetelescope.org/docs/Samples/wwtwebclientsimpleUIHtml5.html");
         }
 
         private void wwt_GetCoordinates()
         {
             if (wwt_web.IsLoaded)
             {
-                float w_RA = 10.0f;
+                //float w_RA = 10.0f;
+                String w_RA = "error";
                 try
                 {
-                    w_RA = Convert.ToSingle(wwt_web.InvokeScript("wwt.getRA"));
+                    //w_RA = Convert.ToSingle(wwt_web.ExecuteJavascriptWithResult("wwt.getRA"));
+                    w_RA = wwt_web.ExecuteJavascriptWithResult("wwt.getRA");
+                    MessageBox.Show(w_RA);
                 }
                 catch (Exception ex)
                 {
@@ -135,17 +138,17 @@ namespace eSSDSS
                 }
                 label1.Content = w_RA;
 
-                Single w_DEC = 10.0f;
-                try
-                {
-                    w_DEC = Convert.ToSingle(wwt_web.InvokeScript("wwt.getDec"));
-                }
-                catch (Exception ex)
-                {
-                    string msg = "Could not call script to get DEC:\n" + ex.Message;
-                    MessageBox.Show(msg);
-                }
-                label2.Content = w_DEC;
+                //Single w_DEC = 10.0f;
+                //try
+                //{
+                //    w_DEC = Convert.ToSingle(wwt_web.ExecuteJavascriptWithResult("wwt.getDec"));
+                //}
+                //catch (Exception ex)
+                //{
+                //    string msg = "Could not call script to get DEC:\n" + ex.Message;
+                //    MessageBox.Show(msg);
+                //}
+                //label2.Content = w_DEC;
             }
             else
             {
