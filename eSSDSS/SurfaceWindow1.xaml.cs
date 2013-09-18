@@ -106,6 +106,9 @@ namespace eSSDSS
         private void surfaceButton1_Click(object sender, RoutedEventArgs e)
         {
             wwt_GetCoordinates();
+            Single w_RA = Convert.ToSingle(label1.Content);
+            Single w_DEC = Convert.ToSingle(label2.Content);
+            sdss_getspec(w_RA,w_DEC,this.image1);
         }
 
         private void webBrowser1_Initialized(object sender, EventArgs e)
@@ -118,19 +121,36 @@ namespace eSSDSS
 
         private void wwt_GetCoordinates()
         {
-            String w_RA;
-            w_RA = this.wwt_web.InvokeScript(@"wwt.getRA()").ToString();
-            label1.Content = w_RA;
-            String w_DEC;
-            w_DEC = this.wwt_web.InvokeScript(@"wwt.getDec()").ToString();
-            label2.Content = w_DEC;
+            if (this.wwt_web.IsLoaded)
+            {
+                float w_RA = 10.0f;
+                try
+                {
+                    w_RA = Convert.ToSingle(this.wwt_web.InvokeScript(@"wwt.getRA"));
+                }
+                catch (Exception ex)
+                {
+                    string msg = "Could not call script to get RA:\n" + ex.Message;
+                    MessageBox.Show(msg);
+                }
+                label1.Content = w_RA;
 
-            //var document = (IHTMLDocument3)this.wwt_web.Document;
-            //var value =
-            //    document.getElementsByName("username")
-            //            .OfType<IHTMLElement>()
-            //            .Select(element => element.getAttribute("value"))
-            //            .FirstOrDefault();
+                Single w_DEC = 10.0f;
+                try
+                {
+                    w_DEC = Convert.ToSingle(this.wwt_web.InvokeScript(@"wwt.getDec"));
+                }
+                catch (Exception ex)
+                {
+                    string msg = "Could not call script to get DEC:\n" + ex.Message;
+                    MessageBox.Show(msg);
+                }
+                label2.Content = w_DEC;
+            }
+            else
+            {
+                MessageBox.Show("Please wait - WWT not yet fully loaded.");
+            }
         
         }
 
@@ -164,24 +184,23 @@ namespace eSSDSS
             CONT.Source=image;
         }
 
-        private void sdss_getspec(float RA, float DEC)
+        private void sdss_getspec(float RA, float DEC, Image CONT)
         {
             // Get closest specobj
             String sql_query;
             sql_query = String.Format("http://skyserver.sdss3.org/dr10/en/tools/search/x_sql.aspx?format=csv&cmd=SELECT TOP 1 s.specobjID, GN.distance  FROM SpecObjAll as s JOIN dbo.fGetNearbyObjEq({0},{1}, 10.0) AS GN ON s.bestObjId = GN.objID ORDER BY distance", RA, DEC);
             WebRequest wrGETURL;
             wrGETURL = WebRequest.Create(sql_query);
-            Stream objStream;
-            objStream = wrGETURL.GetResponse().GetResponseStream();
+            Stream GRS = wrGETURL.GetResponse().GetResponseStream();
+            TextReader reader = (TextReader)new StreamReader(GRS);
+            string sline = reader.ReadToEnd();
             // Parse csv
-            string sline;
-            sline = objStream.ToString().Split('\n')[1];
-            int objid;
-            objid = Int32.Parse(sline.Split(',')[0]);
+            sline = sline.Split('\n')[1];
+            String objid = sline.Split(',')[0];
             // Get spectrum
             String spec_query;
             spec_query = "http://skyserver.sdss3.org/dr10/en/get/specById.ashx?ID=" + objid;
-            web_getimage(spec_query, this.image1);
+            web_getimage(spec_query, CONT);
 
         }
     }
