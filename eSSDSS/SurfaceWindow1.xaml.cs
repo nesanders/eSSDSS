@@ -113,10 +113,13 @@ namespace eSSDSS
 
         private void webBrowser1_Initialized(object sender, EventArgs e)
         {
-            //String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            //String myfile = System.IO.Path.Combine(appdir, "wwt_html5.htm");
-            //this.wwt_web.Navigate(String.Format("file:///{0}", myfile));
-            this.wwt_web.Navigate(@"http://www.worldwidetelescope.org/docs/Samples/wwtwebclientsimpleUIHtml5.html");
+            // Load local / custom html5 file
+            String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            String myfile = System.IO.Path.Combine(appdir, "wwt_html5.htm");
+            this.wwt_web.Navigate(String.Format("file:///{0}", myfile));
+
+            // Load online / sample html5 file
+            //this.wwt_web.Navigate(@"http://www.worldwidetelescope.org/docs/Samples/wwtwebclientsimpleUIHtml5.html");
         }
 
         private void wwt_GetCoordinates()
