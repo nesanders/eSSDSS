@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -109,9 +110,85 @@ namespace eSSDSS
 
         private void webBrowser1_Initialized(object sender, EventArgs e)
         {
-            String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            String myfile = System.IO.Path.Combine(appdir, "wwt_html5.htm");
-            this.wwt_web.Navigate(String.Format("file:///{0}", myfile));
+            //String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            //String myfile = System.IO.Path.Combine(appdir, "wwt_html5.htm");
+            //this.wwt_web.Navigate(String.Format("file:///{0}", myfile));
+            this.wwt_web.Navigate(@"http://www.worldwidetelescope.org/docs/Samples/wwtwebclientsimpleUIHtml5.html");
+        }
+
+        private void wwt_GetCoordinates()
+        {
+            String w_RA;
+            w_RA = this.wwt_web.InvokeScript(@"wwt.getRA()").ToString();
+            label1.Content = w_RA;
+            String w_DEC;
+            w_DEC = this.wwt_web.InvokeScript(@"wwt.getDec()").ToString();
+            label2.Content = w_DEC;
+
+            //var document = (IHTMLDocument3)this.wwt_web.Document;
+            //var value =
+            //    document.getElementsByName("username")
+            //            .OfType<IHTMLElement>()
+            //            .Select(element => element.getAttribute("value"))
+            //            .FirstOrDefault();
+        
+        }
+
+        private void surfaceButton2_Click(object sender, RoutedEventArgs e)
+        {
+            wwt_GetCoordinates();
+        }
+
+        private void web_getimage(string URL, object CONT)
+        {
+            var image = new BitmapImage();
+            int BytesToRead=100;
+
+            WebRequest request = WebRequest.Create(new Uri(URL, UriKind.Absolute));
+            request.Timeout = -1;
+            WebResponse response = request.GetResponse();
+            Stream responseStream = response.GetResponseStream();
+            BinaryReader reader = new BinaryReader(responseStream);
+            MemoryStream memoryStream = new MemoryStream();
+
+            byte[] bytebuffer = new byte[BytesToRead];
+            int bytesRead = reader.Read(bytebuffer, 0, BytesToRead);
+
+            while (bytesRead > 0)
+            {
+                memoryStream.Write(bytebuffer, 0, bytesRead);
+                bytesRead = reader.Read(bytebuffer, 0, BytesToRead);
+            }
+
+            image.BeginInit();
+            memoryStream.Seek(0, SeekOrigin.Begin);
+
+            image.StreamSource = memoryStream;
+            image.EndInit();
+
+            CONT.Source=image;
+        }
+
+        private void sdss_getspec(float RA, float DEC)
+        {
+            // Get closest specobj
+            String sql_query;
+            sql_query = String.Format("http://skyserver.sdss3.org/dr10/en/tools/search/x_sql.aspx?format=csv&cmd=SELECT TOP 1 s.specobjID, GN.distance  FROM SpecObjAll as s JOIN dbo.fGetNearbyObjEq({0},{1}, 10.0) AS GN ON s.bestObjId = GN.objID ORDER BY distance", RA, DEC);
+            WebRequest wrGETURL;
+            wrGETURL = WebRequest.Create(sql_query);
+            Stream objStream;
+            objStream.
+            objStream = wrGETURL.GetResponse().GetResponseStream();
+            // Parse csv
+            string sline;
+            sline = objStream.ToString().Split('\n')[1];
+            int objid;
+            objid = Int32.Parse(sline.Split(',')[0]);
+            // Get spectrum
+            String spec_query;
+            spec_query = "http://skyserver.sdss3.org/dr10/en/get/specById.ashx?ID=" + objid;
+            web_getimage(spec_query, image1);
+
         }
     }
 }
