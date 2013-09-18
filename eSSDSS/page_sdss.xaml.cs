@@ -11,6 +11,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net;
+using System.IO;
+using Microsoft.Surface;
+using Microsoft.Surface.Presentation;
+using Microsoft.Surface.Presentation.Controls;
+using Microsoft.Surface.Presentation.Input;
 
 namespace eSSDSS
 {
@@ -23,72 +29,7 @@ namespace eSSDSS
         {
             InitializeComponent();
         }
-
-        private void surfaceButton1_Click(object sender, RoutedEventArgs e)
-        {
-            wwt_GetCoordinates();
-            Single w_RA = Convert.ToSingle(label1.Content);
-            Single w_DEC = Convert.ToSingle(label2.Content);
-            sdss_getspec(w_RA, w_DEC, this.image1);
-        }
-
-        private void wwt_GetCoordinates()
-        {
-            if (wwt_web.IsLoaded)
-            {
-                // The only way I can find to expose the wwt coordinate functions is to redefine the functions in terms of the window namespace
-                dynamic document = this.wwt_web.Document;
-                dynamic head = document.GetElementsByTagName("head")[0];
-                dynamic scriptEl = document.CreateElement("script");
-                scriptEl.text = @"function getRA() {return(String(window.wwt.getRA()*15.))};
-                                  function getDEC() {return(String(window.wwt.getDec()))};
-                                  function getFOV() {return(String(window.wwt.get_fov()))};";
-                head.AppendChild(scriptEl);
-
-
-                float w_RA = 10.0f;
-                try
-                {
-                    w_RA = Convert.ToSingle(wwt_web.InvokeScript("getRA"));
-                }
-                catch (Exception ex)
-                {
-                    string msg = "Could not call script to get RA:\n" + ex.Message;
-                    MessageBox.Show(msg);
-                }
-                label1.Content = w_RA;
-
-                Single w_DEC = 10.0f;
-                try
-                {
-                    w_DEC = Convert.ToSingle(wwt_web.InvokeScript("getDEC"));
-                }
-                catch (Exception ex)
-                {
-                    string msg = "Could not call script to get DEC:\n" + ex.Message;
-                    MessageBox.Show(msg);
-                }
-                label2.Content = w_DEC;
-
-                Single w_FOV = 10.0f;
-                try
-                {
-                    w_FOV = Convert.ToSingle(wwt_web.InvokeScript("getFOV"));
-                }
-                catch (Exception ex)
-                {
-                    string msg = "Could not call script to get FOV:\n" + ex.Message;
-                    MessageBox.Show(msg);
-                }
-                label_fov.Content = w_FOV;
-            }
-            else
-            {
-                MessageBox.Show("Please wait - WWT not yet fully loaded.");
-            }
-
-        }
-
+        
         private void web_getimage(string URL, Image CONT)
         {
             var image = new BitmapImage();
@@ -152,6 +93,19 @@ namespace eSSDSS
                 web_getimage(spec_query, CONT);
             }
 
+        }
+
+        private void lab_RA_v_Initialized(object sender, EventArgs e)
+        {
+            lab_RA_v.Content = g_coords.w_RA.ToString();
+        }
+        private void lab_DEC_v_Initialized(object sender, EventArgs e)
+        {
+            lab_DEC_v.Content = g_coords.w_DEC.ToString();
+        }
+        private void lab_FOV_v_Initialized(object sender, EventArgs e)
+        {
+            lab_FOV_v.Content = g_coords.w_FOV.ToString();
         }
     }
 }

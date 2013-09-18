@@ -16,7 +16,7 @@
             </my:TagVisualizer.Definitions>
         </my:TagVisualizer>
         <Label Content="RA: " Height="35" HorizontalAlignment="Left" Margin="18,11,0,0" Name="lab_RA" VerticalAlignment="Top" Width="50" />
-        <Label Content="0" Height="35" Margin="74,11,1054,0" Name="lab_RA_v" VerticalAlignment="Top" />
+        <Label Content="0" Height="35" Margin="74,11,1054,0" Name="lab_RA_v" VerticalAlignment="Top" Initialized="lab_RA_v_Initialized" />
         <Label Content="DEC: " Height="35" HorizontalAlignment="Left" Margin="249,12,0,0" Name="lab_DEC" VerticalAlignment="Top" Width="50" />
         <Label Content="0" Height="35" Margin="305,12,823,0" Name="lab_DEC_v" VerticalAlignment="Top" />
         <Label Content="FOV: " Height="35" HorizontalAlignment="Left" Margin="519,11,0,0" Name="lab_FOV" VerticalAlignment="Top" Width="50" />

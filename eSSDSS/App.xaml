@@ -3,6 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     StartupUri="SurfaceWindow1.xaml"
     >
+    <Application.MainWindow>
+        <Window />
+    </Application.MainWindow>
     <Application.Resources>
       <ResourceDictionary>
         <ResourceDictionary.MergedDictionaries>
