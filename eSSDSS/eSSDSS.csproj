@@ -56,10 +56,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="page_sdss.xaml.cs">
+      <DependentUpon>page_sdss.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page_wwt.xaml.cs">
+      <DependentUpon>page_wwt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="wwt_tag.xaml.cs">
       <DependentUpon>wwt_tag.xaml</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Page Include="page_sdss.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="page_wwt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SurfaceWindow1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
