@@ -127,7 +127,7 @@ namespace eSSDSS
                 dynamic document = this.wwt_web.Document;
                 dynamic head = document.GetElementsByTagName("head")[0];
                 dynamic scriptEl = document.CreateElement("script");
-                scriptEl.text = @"function getRA() {return(String(window.wwt.getRA()))};
+                scriptEl.text = @"function getRA() {return(String(window.wwt.getRA()*15.))};
                                   function getDEC() {return(String(window.wwt.getDec()))};
                                   function getFOV() {return(String(window.wwt.get_fov()))};";
                 head.AppendChild(scriptEl);
@@ -212,18 +212,23 @@ namespace eSSDSS
             String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             var path = new Uri(System.IO.Path.Combine(appdir, "shutter.png"));
             CONT.Source = new BitmapImage(path);
+            CONT.InvalidateVisual();
+
             // Get closest specobj
             String sql_query;
-            sql_query = String.Format("http://skyserver.sdss3.org/dr10/en/tools/search/x_sql.aspx?format=csv&cmd=SELECT TOP 1 s.specobjID, GN.distance  FROM SpecObjAll as s JOIN dbo.fGetNearbyObjEq({0},{1}, 10.0) AS GN ON s.bestObjId = GN.objID ORDER BY distance", RA, DEC);
+            sql_query = String.Format("http://skyserver.sdss3.org/dr10/en/tools/search/x_sql.aspx?format=csv&cmd=SELECT TOP 1 s.specobjID, GN.distance  FROM SpecObjAll as s JOIN dbo.fGetNearbyObjEq({0},{1}, 1.0) AS GN ON s.bestObjId = GN.objID ORDER BY distance", RA, DEC);
+            MessageBox.Show(sql_query);
             WebRequest wrGETURL;
             wrGETURL = WebRequest.Create(sql_query);
             Stream GRS = wrGETURL.GetResponse().GetResponseStream();
             TextReader reader = (TextReader)new StreamReader(GRS);
             string sline = reader.ReadToEnd();
+
             // Parse csv
             if (sline.Split('\n').Length == 1)
             {
                 MessageBox.Show("SDSS query error:\n"+sline);
+                CONT.Source = null;
             }
             else
             {
