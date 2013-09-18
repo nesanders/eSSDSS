@@ -30,13 +30,6 @@ namespace eSSDSS
             InitializeComponent();
         }
 
-        private void surfaceButton1_Click(object sender, RoutedEventArgs e)
-        {
-            Window win = cWindow.WindowByName();
-            System.Windows.Controls.Frame cframe = (System.Windows.Controls.Frame)win.FindName("content_frame");
-            cframe.Source = new Uri("page_sdss.xaml", UriKind.RelativeOrAbsolute);
-        }
-
         private void wwt_web_Initialized(object sender, EventArgs e)
         {
             // Load local / custom html5 file
@@ -97,6 +90,15 @@ namespace eSSDSS
                 MessageBox.Show("Please wait - WWT not yet fully loaded.");
             }
 
+        }
+
+        private void wwt_web_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            wwt_GetCoordinates();
+        }
+        private void wwt_web_TouchUp(object sender, MouseButtonEventArgs e)
+        {
+            wwt_GetCoordinates();
         }
     }
 }

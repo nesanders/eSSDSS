@@ -21,13 +21,6 @@ using Microsoft.Surface.Presentation.Input;
 namespace eSSDSS
 {
 
-    public class g_coords
-    {
-        public static Single w_RA = 10.0f;
-        public static Single w_DEC = 10.0f;
-        public static Single w_FOV = 10.0f;
-    }
-
     /// <summary>
     /// Interaction logic for SurfaceWindow1.xaml
     /// </summary>
@@ -114,5 +107,29 @@ namespace eSSDSS
         {
             content_frame.Source = new Uri("page_wwt.xaml",UriKind.RelativeOrAbsolute);
         }
+
+        private void modeswitch_Click(object sender, RoutedEventArgs e)
+        {
+            Uri p_wwt = new Uri("page_wwt.xaml", UriKind.RelativeOrAbsolute);
+            Uri p_sdss = new Uri("page_sdss.xaml", UriKind.RelativeOrAbsolute);
+
+            if (content_frame.Source == p_wwt)
+            {
+                content_frame.Source = p_sdss;
+            }
+            else
+            {
+                content_frame.Source = p_wwt;
+            }
+        }
     }
+
+
+    public class g_coords
+    {
+        public static Single w_RA = 10.0f;
+        public static Single w_DEC = 10.0f;
+        public static Single w_FOV = 10.0f;
+    }
+
 }

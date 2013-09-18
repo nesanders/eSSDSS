@@ -5,6 +5,7 @@
     Title="eSSDSS" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="815" Width="1275"
     WindowStyle="None" WindowState="Maximized">
   <Grid Height="768" Width="1280">
-        <Frame Height="766" HorizontalAlignment="Left" Name="content_frame" VerticalAlignment="Top" Width="1263" Initialized="content_frame_Initialized" />
+        <Frame Height="711" HorizontalAlignment="Left" Name="content_frame" VerticalAlignment="Top" Width="1263" Initialized="content_frame_Initialized" Margin="0,55,0,0" />
+        <s:SurfaceButton Content="Switch mode" Height="27" HorizontalAlignment="Left" Margin="482,0,0,0" Name="modeswitch" VerticalAlignment="Top" Width="269" Click="modeswitch_Click" />
     </Grid>
 </s:SurfaceWindow>
