@@ -114,12 +114,13 @@ namespace eSSDSS
         private void webBrowser1_Initialized(object sender, EventArgs e)
         {
             // Load local / custom html5 file
-            String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            String myfile = System.IO.Path.Combine(appdir, "wwt_html5.htm");
-            this.wwt_web.Navigate(String.Format("file:///{0}", myfile));
+            //String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            //String myfile = System.IO.Path.Combine(appdir, "wwt_html5.htm");
+            //this.wwt_web.Navigate(String.Format("file:///{0}", myfile));
 
             // Load online / sample html5 file
             //this.wwt_web.Navigate(@"http://www.worldwidetelescope.org/docs/Samples/wwtwebclientsimpleUIHtml5.html");
+            this.wwt_web.Navigate(@"http://rawgithub.com/nesanders/eSSDSS/master/eSSDSS/wwt_html5.htm");
         }
 
         private void wwt_GetCoordinates()
@@ -220,7 +221,6 @@ namespace eSSDSS
             // Get closest specobj
             String sql_query;
             sql_query = String.Format("http://skyserver.sdss3.org/dr10/en/tools/search/x_sql.aspx?format=csv&cmd=SELECT TOP 1 s.specobjID, GN.distance  FROM SpecObjAll as s JOIN dbo.fGetNearbyObjEq({0},{1}, 1.0) AS GN ON s.bestObjId = GN.objID ORDER BY distance", RA, DEC);
-            MessageBox.Show(sql_query);
             WebRequest wrGETURL;
             wrGETURL = WebRequest.Create(sql_query);
             Stream GRS = wrGETURL.GetResponse().GetResponseStream();
