@@ -31,5 +31,13 @@ namespace eSSDSS
         {
             //TODO: customize wwt_tag's UI based on this.VisualizedTag here
         }
+
+        private void TagVisualization_Initialized(object sender, EventArgs e)
+        {
+            String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var path = System.IO.Path.Combine(appdir, "camera-shutter-click-01.wav");
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(path);
+            player.Play();
+        }
     }
 }

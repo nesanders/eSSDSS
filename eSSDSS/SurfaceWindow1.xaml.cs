@@ -121,12 +121,12 @@ namespace eSSDSS
 
         private void wwt_GetCoordinates()
         {
-            if (this.wwt_web.IsLoaded)
+            if (wwt_web.IsLoaded)
             {
                 float w_RA = 10.0f;
                 try
                 {
-                    w_RA = Convert.ToSingle(this.wwt_web.InvokeScript(@"wwt.getRA"));
+                    w_RA = Convert.ToSingle(wwt_web.InvokeScript("wwt.getRA"));
                 }
                 catch (Exception ex)
                 {
@@ -138,7 +138,7 @@ namespace eSSDSS
                 Single w_DEC = 10.0f;
                 try
                 {
-                    w_DEC = Convert.ToSingle(this.wwt_web.InvokeScript(@"wwt.getDec"));
+                    w_DEC = Convert.ToSingle(wwt_web.InvokeScript("wwt.getDec"));
                 }
                 catch (Exception ex)
                 {
@@ -186,6 +186,10 @@ namespace eSSDSS
 
         private void sdss_getspec(float RA, float DEC, Image CONT)
         {
+            //Put up placeholder image
+            String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var path = new Uri(System.IO.Path.Combine(appdir, "shutter.png"));
+            CONT.Source = new BitmapImage(path);
             // Get closest specobj
             String sql_query;
             sql_query = String.Format("http://skyserver.sdss3.org/dr10/en/tools/search/x_sql.aspx?format=csv&cmd=SELECT TOP 1 s.specobjID, GN.distance  FROM SpecObjAll as s JOIN dbo.fGetNearbyObjEq({0},{1}, 10.0) AS GN ON s.bestObjId = GN.objID ORDER BY distance", RA, DEC);
@@ -201,7 +205,6 @@ namespace eSSDSS
             String spec_query;
             spec_query = "http://skyserver.sdss3.org/dr10/en/get/specById.ashx?ID=" + objid;
             web_getimage(spec_query, CONT);
-
         }
     }
 }
