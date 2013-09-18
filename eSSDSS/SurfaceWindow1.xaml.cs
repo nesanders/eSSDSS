@@ -11,14 +11,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 using Microsoft.Surface;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Input;
-using Process
 
 namespace eSSDSS
 {
+
     /// <summary>
     /// Interaction logic for SurfaceWindow1.xaml
     /// </summary>
@@ -103,15 +104,14 @@ namespace eSSDSS
 
         private void surfaceButton1_Click(object sender, RoutedEventArgs e)
         {
-            Process p = Process.Start(@"C:\Program Files (x86)\Microsoft Research\Microsoft WorldWide Telescope\WWTExplorer.exe");
 
-            p.WaitForInputIdle();
-            IntPtr appWin = p.MainWindowHandle;
+        }
 
-            SetParent(appWin, parent);
-            SetWindowLong(appWin, GWL_STYLE, WS_VISIBLE);
-            System.Threading.Thread.Sleep(100);
-            MoveWindow(appWin, wwt_client.margin[0], wwt_client.margin[1], wwt_client.Width, wwt_client.Height, true);
+        private void webBrowser1_Initialized(object sender, EventArgs e)
+        {
+            String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            String myfile = System.IO.Path.Combine(appdir, "wwt_html5.htm");
+            this.wwt_web.Navigate(String.Format("file:///{0}", myfile));
         }
     }
 }

@@ -103,6 +103,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="wwt_html5.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="fiber.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

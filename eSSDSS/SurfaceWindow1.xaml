@@ -4,12 +4,12 @@
     xmlns:s="http://schemas.microsoft.com/surface/2008"
     Title="eSSDSS" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="1280" Width="1920">
   <Grid>
+        <s:SurfaceButton Content="Launch WWT" Height="100" HorizontalAlignment="Left" Margin="306,1048,0,0" Name="surfaceButton1" VerticalAlignment="Top" Width="170" Click="surfaceButton1_Click" />
+        <WebBrowser Height="715" HorizontalAlignment="Left" Margin="464,254,0,0" Name="wwt_web" VerticalAlignment="Top" Width="1110" Initialized="webBrowser1_Initialized" />
         <s:TagVisualizer Height="670" HorizontalAlignment="Left" Margin="12,254,0,0" Name="wwt_tags" VerticalAlignment="Top" Width="1185">
             <s:TagVisualizer.Definitions>
                 <s:TagVisualizationDefinition Value="0x0" LostTagTimeout="2000" MaxCount="6" Source="wwt_tag.xaml" TagRemovedBehavior="Fade" />
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
-        <Rectangle Height="865" HorizontalAlignment="Left" Margin="637,323,0,0" Name="wwt_client" Stroke="Black" VerticalAlignment="Top" Width="1105" StrokeThickness="4" />
-        <s:SurfaceButton Content="Launch WWT" Height="100" HorizontalAlignment="Left" Margin="306,1048,0,0" Name="surfaceButton1" VerticalAlignment="Top" Width="170" Click="surfaceButton1_Click" />
     </Grid>
 </s:SurfaceWindow>

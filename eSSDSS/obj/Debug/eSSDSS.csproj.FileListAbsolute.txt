@@ -19,3 +19,23 @@ C:\Users\Nathan\AppData\Local\Temporary Projects\eSSDSS\obj\Debug\GenerateResour
 C:\Users\Nathan\AppData\Local\Temporary Projects\eSSDSS\obj\Debug\eSSDSS.exe
 C:\Users\Nathan\AppData\Local\Temporary Projects\eSSDSS\obj\Debug\eSSDSS.pdb
 C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\eSSDSS.exe
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\SurfaceWindow1.baml
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\wwt_tag.baml
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\App.baml
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\SurfaceWindow1.g.cs
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\wwt_tag.g.cs
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\App.g.cs
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\eSSDSS_Content.g.cs
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\eSSDSS_MarkupCompile.cache
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\eSSDSS.g.resources
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\eSSDSS.Properties.Resources.resources
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\bin\Debug\Resources\icon.png
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\bin\Debug\eSSDSS.xml
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\bin\Debug\wwt_tag.xaml.cs
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\bin\Debug\eSSDSS.exe
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\bin\Debug\eSSDSS.pdb
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\obj\Debug\eSSDSS.pdb
+C:\Users\Nathan\Documents\Visual Studio 2010\Projects\eSSDSS\eSSDSS\bin\Debug\wwt_html5.htm
