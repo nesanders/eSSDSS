@@ -55,6 +55,7 @@ namespace eSSDSS
                                   function getFOV() {return(String(window.wwt.get_fov()))};";
                 head.AppendChild(scriptEl);
 
+                // Get RA
                 try
                 {
                     g_coords.w_RA = Convert.ToSingle(wwt_web.InvokeScript("getRA"));
@@ -65,6 +66,7 @@ namespace eSSDSS
                     MessageBox.Show(msg);
                 }
 
+                // Get DEC
                 try
                 {
                     g_coords.w_DEC = Convert.ToSingle(wwt_web.InvokeScript("getDEC"));
@@ -75,6 +77,7 @@ namespace eSSDSS
                     MessageBox.Show(msg);
                 }
 
+                // Get FOV
                 try
                 {
                     g_coords.w_FOV = Convert.ToSingle(wwt_web.InvokeScript("getFOV"));
@@ -84,6 +87,9 @@ namespace eSSDSS
                     string msg = "Could not call script to get FOV:\n" + ex.Message;
                     MessageBox.Show(msg);
                 }
+
+                // Get image
+                g_coords.image = snapshot.CaptureWindow(wwt_web);
             }
             else
             {
