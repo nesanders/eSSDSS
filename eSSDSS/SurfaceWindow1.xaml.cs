@@ -123,10 +123,20 @@ namespace eSSDSS
         {
             if (wwt_web.IsLoaded)
             {
+                // The only way I can find to expose the wwt coordinate functions is to redefine the functions in terms of the window namespace
+                dynamic document = this.wwt_web.Document;
+                dynamic head = document.GetElementsByTagName("head")[0];
+                dynamic scriptEl = document.CreateElement("script");
+                scriptEl.text = @"function getRA() {return(String(window.wwt.getRA()))};
+                                  function getDEC() {return(String(window.wwt.getDec()))};
+                                  function getFOV() {return(String(window.wwt.get_fov()))};";
+                head.AppendChild(scriptEl);
+
+
                 float w_RA = 10.0f;
                 try
                 {
-                    w_RA = Convert.ToSingle(wwt_web.InvokeScript("wwt.getRA"));
+                    w_RA = Convert.ToSingle(wwt_web.InvokeScript("getRA"));
                 }
                 catch (Exception ex)
                 {
@@ -138,7 +148,7 @@ namespace eSSDSS
                 Single w_DEC = 10.0f;
                 try
                 {
-                    w_DEC = Convert.ToSingle(wwt_web.InvokeScript("wwt.getDec"));
+                    w_DEC = Convert.ToSingle(wwt_web.InvokeScript("getDEC"));
                 }
                 catch (Exception ex)
                 {
@@ -146,6 +156,18 @@ namespace eSSDSS
                     MessageBox.Show(msg);
                 }
                 label2.Content = w_DEC;
+
+                Single w_FOV = 10.0f;
+                try
+                {
+                    w_FOV = Convert.ToSingle(wwt_web.InvokeScript("getFOV"));
+                }
+                catch (Exception ex)
+                {
+                    string msg = "Could not call script to get FOV:\n" + ex.Message;
+                    MessageBox.Show(msg);
+                }
+                label_fov.Content = w_FOV;
             }
             else
             {
@@ -199,12 +221,20 @@ namespace eSSDSS
             TextReader reader = (TextReader)new StreamReader(GRS);
             string sline = reader.ReadToEnd();
             // Parse csv
-            sline = sline.Split('\n')[1];
-            String objid = sline.Split(',')[0];
-            // Get spectrum
-            String spec_query;
-            spec_query = "http://skyserver.sdss3.org/dr10/en/get/specById.ashx?ID=" + objid;
-            web_getimage(spec_query, CONT);
+            if (sline.Split('\n').Length == 1)
+            {
+                MessageBox.Show("SDSS query error:\n"+sline);
+            }
+            else
+            {
+                sline = sline.Split('\n')[1];
+                String objid = sline.Split(',')[0];
+                // Get spectrum
+                String spec_query;
+                spec_query = "http://skyserver.sdss3.org/dr10/en/get/specById.ashx?ID=" + objid;
+                web_getimage(spec_query, CONT);
+            }
+            
         }
     }
 }
