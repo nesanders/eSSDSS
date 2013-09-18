@@ -105,7 +105,7 @@ namespace eSSDSS
 
         private void surfaceButton1_Click(object sender, RoutedEventArgs e)
         {
-
+            wwt_GetCoordinates();
         }
 
         private void webBrowser1_Initialized(object sender, EventArgs e)
@@ -134,12 +134,7 @@ namespace eSSDSS
         
         }
 
-        private void surfaceButton2_Click(object sender, RoutedEventArgs e)
-        {
-            wwt_GetCoordinates();
-        }
-
-        private void web_getimage(string URL, object CONT)
+        private void web_getimage(string URL, Image CONT)
         {
             var image = new BitmapImage();
             int BytesToRead=100;
@@ -177,7 +172,6 @@ namespace eSSDSS
             WebRequest wrGETURL;
             wrGETURL = WebRequest.Create(sql_query);
             Stream objStream;
-            objStream.
             objStream = wrGETURL.GetResponse().GetResponseStream();
             // Parse csv
             string sline;
@@ -187,7 +181,7 @@ namespace eSSDSS
             // Get spectrum
             String spec_query;
             spec_query = "http://skyserver.sdss3.org/dr10/en/get/specById.ashx?ID=" + objid;
-            web_getimage(spec_query, image1);
+            web_getimage(spec_query, this.image1);
 
         }
     }
