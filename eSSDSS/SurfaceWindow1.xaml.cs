@@ -111,16 +111,24 @@ namespace eSSDSS
 
         private void modeswitch_Click(object sender, RoutedEventArgs e)
         {
-            Uri p_wwt = new Uri("page_wwt.xaml", UriKind.RelativeOrAbsolute);
-            Uri p_sdss = new Uri("page_sdss.xaml", UriKind.RelativeOrAbsolute);
+            String p_wwt = "eSSDSS;component/page_wwt.xaml";
+            String p_sdss = "eSSDSS;component/page_sdss.xaml";
+            Uri u_wwt = new Uri("page_wwt.xaml", UriKind.RelativeOrAbsolute);
+            Uri u_sdss = new Uri("page_sdss.xaml", UriKind.RelativeOrAbsolute);
 
-            if (content_frame.Source == p_wwt)
+
+            if (content_frame.Source.OriginalString == p_wwt)
             {
-                content_frame.Source = p_sdss;
+                MessageBox.Show("Switching to SDSS");
+                content_frame.Source = u_sdss;
             }
-            else
+            else if (content_frame.Source.OriginalString == p_sdss)
             {
-                content_frame.Source = p_wwt;
+                MessageBox.Show("Switching to WWT");
+                content_frame.Source = u_wwt;
+            }
+            else { 
+                MessageBox.Show("Error: content_frame source not recognized.");
             }
         }
     }
