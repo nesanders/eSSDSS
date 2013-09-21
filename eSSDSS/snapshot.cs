@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Class adapted from http://stackoverflow.com/questions/1858122/saving-a-screenshot-of-a-window-using-c-wpf-and-dwm
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -84,11 +86,11 @@ namespace eSSDSS
         }
     }
 
-    public static class ControlExtensions
-    {
-        public static Image DrawToImage(this System.Windows.Controls.Control control)
-        {
-            return snapshot.Utilities.CaptureWindow(control.Handle);
-        }
-    }
+    //public static class ControlExtensions
+    //{
+    //    public static Image DrawToImage(this System.Windows.Controls.Control control)
+    //    {
+    //        return snapshot.Utilities.CaptureWindow(control.Handle);
+    //    }
+    //}
 }
