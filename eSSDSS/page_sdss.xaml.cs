@@ -95,22 +95,27 @@ namespace eSSDSS
 
         }
 
-        private void lab_RA_v_Initialized(object sender, EventArgs e)
+        
+
+        private void lab_RA_v_Loaded_1(object sender, RoutedEventArgs e)
         {
             lab_RA_v.Content = g_coords.w_RA.ToString();
         }
-        private void lab_DEC_v_Initialized(object sender, EventArgs e)
+
+        private void lab_DEC_v_Loaded_1(object sender, RoutedEventArgs e)
         {
             lab_DEC_v.Content = g_coords.w_DEC.ToString();
         }
-        private void lab_FOV_v_Initialized(object sender, EventArgs e)
+
+        private void lab_FOV_v_Loaded_1(object sender, RoutedEventArgs e)
         {
             lab_FOV_v.Content = g_coords.w_FOV.ToString();
         }
 
-        private void im_main_Initialized(object sender, EventArgs e)
+        private void im_main_Loaded_1(object sender, RoutedEventArgs e)
         {
             im_main.Source = g_coords.image;
+            im_main.InvalidateVisual();
         }
     }
 }

@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="860" d:DesignWidth="1010"
-	Title="page_wwt" xmlns:my="http://schemas.microsoft.com/surface/2008">
+	Title="page_wwt" xmlns:my="http://schemas.microsoft.com/surface/2008" Unloaded="Page_Unloaded">
 
-    <Grid Height="820" Width="1030">
-        <WebBrowser Height="620" HorizontalAlignment="Left" Margin="101,124,0,0" Name="wwt_web" VerticalAlignment="Top" Width="820" Initialized="wwt_web_Initialized" MouseUp="wwt_web_MouseUp" />
+    <Grid Height="820" Width="1030" MouseLeave="Grid_MouseLeave">
+        <WebBrowser Height="620" HorizontalAlignment="Left" Margin="101,124,0,0" Name="wwt_web" VerticalAlignment="Top" Width="820" Initialized="wwt_web_Initialized" MouseUp="wwt_web_MouseUp" TouchLeave="wwt_web_TouchLeave" />
     </Grid>
 </Page>

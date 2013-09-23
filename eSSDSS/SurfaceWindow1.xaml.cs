@@ -111,6 +111,8 @@ namespace eSSDSS
 
         private void modeswitch_Click(object sender, RoutedEventArgs e)
         {
+            //page_wwt.ContentProperty.GetType().GetMethod("wwt_GetCoordinates").Invoke(new page_wwt(), null);
+
             String p_wwt = "eSSDSS;component/page_wwt.xaml";
             String p_sdss = "eSSDSS;component/page_sdss.xaml";
             Uri u_wwt = new Uri("page_wwt.xaml", UriKind.RelativeOrAbsolute);
@@ -119,12 +121,10 @@ namespace eSSDSS
 
             if (content_frame.Source.OriginalString == p_wwt)
             {
-                MessageBox.Show("Switching to SDSS");
                 content_frame.Source = u_sdss;
             }
             else if (content_frame.Source.OriginalString == p_sdss)
             {
-                MessageBox.Show("Switching to WWT");
                 content_frame.Source = u_wwt;
             }
             else { 

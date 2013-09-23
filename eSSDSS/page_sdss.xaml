@@ -8,7 +8,7 @@
 	Title="page_sdss" Height="1024" Width="1280" xmlns:my="http://schemas.microsoft.com/surface/2008">
 
     <Grid Height="1024" Width="1280">
-        <Image Height="579" HorizontalAlignment="Left" Margin="292,180,0,0" Name="im_main" Stretch="Fill" VerticalAlignment="Top" Width="745" Initialized="im_main_Initialized" />
+        <Image Height="579" HorizontalAlignment="Left" Margin="292,180,0,0" Name="im_main" Stretch="Fill" VerticalAlignment="Top" Width="745" Loaded="im_main_Loaded_1" />
         <Image Height="270" HorizontalAlignment="Left" Margin="12,765,0,0" Name="im_spec_1" Stretch="Fill" VerticalAlignment="Top" Width="380" />
         <my:TagVisualizer Height="579" HorizontalAlignment="Left" Margin="292,180,0,0" Name="tag_spec" VerticalAlignment="Top" Width="745">
             <my:TagVisualizer.Definitions>
@@ -16,10 +16,10 @@
             </my:TagVisualizer.Definitions>
         </my:TagVisualizer>
         <Label Content="RA: " Height="35" HorizontalAlignment="Left" Margin="18,11,0,0" Name="lab_RA" VerticalAlignment="Top" Width="50" />
-        <Label Content="0" Height="35" Margin="74,11,1054,0" Name="lab_RA_v" VerticalAlignment="Top" Initialized="lab_RA_v_Initialized" />
+        <Label Content="0" Height="35" Margin="74,11,1054,0" Name="lab_RA_v" VerticalAlignment="Top" Loaded="lab_RA_v_Loaded_1" />
         <Label Content="DEC: " Height="35" HorizontalAlignment="Left" Margin="249,12,0,0" Name="lab_DEC" VerticalAlignment="Top" Width="50" />
-        <Label Content="0" Height="35" Margin="305,12,823,0" Name="lab_DEC_v" VerticalAlignment="Top" />
+        <Label Content="0" Height="35" Margin="305,12,823,0" Name="lab_DEC_v" VerticalAlignment="Top" Loaded="lab_DEC_v_Loaded_1" />
         <Label Content="FOV: " Height="35" HorizontalAlignment="Left" Margin="519,11,0,0" Name="lab_FOV" VerticalAlignment="Top" Width="50" />
-        <Label Content="0" Height="35" Margin="575,11,553,0" Name="lab_FOV_v" VerticalAlignment="Top" />
+        <Label Content="0" Height="35" Margin="575,11,553,0" Name="lab_FOV_v" VerticalAlignment="Top" Loaded="lab_FOV_v_Loaded_1" />
     </Grid>
 </Page>

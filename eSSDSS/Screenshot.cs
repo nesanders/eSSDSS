@@ -56,7 +56,7 @@ namespace eSSDSS
             //Get screenshot
             byte[] screenshot = source.GetJpgImage(1.0, 95);
             // Save jpeg
-            FileStream fileStream = new FileStream(@"SDSSScreenshot.jpg", FileMode.Create, FileAccess.ReadWrite);
+            FileStream fileStream = new FileStream(@"SDSS_Screenshot.jpg", FileMode.Create, FileAccess.ReadWrite);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
             binaryWriter.Write(screenshot);
             binaryWriter.Close();

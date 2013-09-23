@@ -42,7 +42,7 @@ namespace eSSDSS
             this.wwt_web.Navigate(@"http://rawgithub.com/nesanders/eSSDSS/master/eSSDSS/wwt_html5.htm");
         }
 
-        private void wwt_GetCoordinates()
+        public void wwt_GetCoordinates()
         {
             if (wwt_web.IsLoaded)
             {
@@ -99,16 +99,36 @@ namespace eSSDSS
             {
                 MessageBox.Show("Please wait - WWT not yet fully loaded.");
             }
+            MessageBox.Show("RA:"+g_coords.w_RA);
 
         }
 
         private void wwt_web_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            wwt_GetCoordinates();
+            //wwt_GetCoordinates();
         }
         private void wwt_web_TouchUp(object sender, MouseButtonEventArgs e)
         {
+            //wwt_GetCoordinates();
+            //MessageBox.Show("TouchUp");
+        }
+
+        private void wwt_web_TouchLeave(object sender, TouchEventArgs e)
+        {
+            //wwt_GetCoordinates();
+            //MessageBox.Show("Touchleave");
+        }
+
+        private void Grid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            //wwt_GetCoordinates();
+            //MessageBox.Show("gridleave");
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
             wwt_GetCoordinates();
+            MessageBox.Show("pageunload");
         }
     }
 }
