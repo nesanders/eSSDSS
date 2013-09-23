@@ -90,7 +90,9 @@ namespace eSSDSS
 
                 // Get image
                 //snapshot snap = new snapshot();
-                g_coords.image = new System.Drawing.Bitmap(snapshot.Utilities.CaptureWindow(wwt_web.Handle));
+                //g_coords.image = new System.Drawing.Bitmap(snapshot.Utilities.CaptureWindow(wwt_web.Handle));
+                //g_coords.image = snapshot.Utilities.CaptureWindow(wwt_web.Handle);
+                g_coords.image = wwt_web.SaveAndBitmapSource();
 
             }
             else

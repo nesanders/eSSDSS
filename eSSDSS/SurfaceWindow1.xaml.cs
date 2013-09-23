@@ -139,7 +139,7 @@ namespace eSSDSS
         public static Single w_RA = 10.0f;
         public static Single w_DEC = 10.0f;
         public static Single w_FOV = 10.0f;
-        public static Bitmap image;
+        public static BitmapSource image;
         
     }
 

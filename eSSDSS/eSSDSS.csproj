@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Screenshot.cs" />
     <Compile Include="snapshot.cs" />
     <Compile Include="page_sdss.xaml.cs">
       <DependentUpon>page_sdss.xaml</DependentUpon>

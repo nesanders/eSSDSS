@@ -107,5 +107,10 @@ namespace eSSDSS
         {
             lab_FOV_v.Content = g_coords.w_FOV.ToString();
         }
+
+        private void im_main_Initialized(object sender, EventArgs e)
+        {
+            im_main.Source = g_coords.image;
+        }
     }
 }

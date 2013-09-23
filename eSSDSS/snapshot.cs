@@ -8,6 +8,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Media.Imaging;
 using System.Drawing;
+using System.Windows;
 
 namespace eSSDSS
 {
@@ -16,12 +17,12 @@ namespace eSSDSS
 
         public static class Utilities
         {
-            public static Image CaptureScreen()
+            public static BitmapSource CaptureScreen()
             {
                 return CaptureWindow(User32.GetDesktopWindow());
             }
 
-            public static Image CaptureWindow(IntPtr handle)
+            public static BitmapSource CaptureWindow(IntPtr handle)
             {
 
                 IntPtr hdcSrc = User32.GetWindowDC(handle);
@@ -41,10 +42,12 @@ namespace eSSDSS
                 Gdi32.DeleteDC(hdcDest);
                 User32.ReleaseDC(handle, hdcSrc);
 
-                Image image = Image.FromHbitmap(hBitmap);
+                //Image image = Image.FromHbitmap(hBitmap);
+                BitmapSource returnImage;
+                returnImage = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
                 Gdi32.DeleteObject(hBitmap);
 
-                return image;
+                return returnImage;
             }
         }
 
