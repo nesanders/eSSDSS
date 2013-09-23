@@ -44,7 +44,7 @@ namespace eSSDSS
 
         public void wwt_GetCoordinates()
         {
-            if (wwt_web.IsLoaded)
+            //if (wwt_web.IsLoaded)
             {
                 // The only way I can find to expose the wwt coordinate functions is to redefine the functions in terms of the window namespace
                 dynamic document = this.wwt_web.Document;
@@ -95,10 +95,10 @@ namespace eSSDSS
                 g_coords.image = wwt_web.SaveAndBitmapSource();
 
             }
-            else
-            {
-                MessageBox.Show("Please wait - WWT not yet fully loaded.");
-            }
+            //else
+            //{
+            //    MessageBox.Show("Please wait - WWT not yet fully loaded.");
+            //}
             MessageBox.Show("RA:"+g_coords.w_RA);
 
         }

@@ -61,7 +61,8 @@ namespace eSSDSS
             binaryWriter.Write(screenshot);
             binaryWriter.Close();
             // Load jpeg
-            var path = new Uri("shutter.png");
+            String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var path = new Uri(System.IO.Path.Combine(appdir, "SDSS_Screenshot.jpg"));
             return new BitmapImage(path);
         }
     }
