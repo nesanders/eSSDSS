@@ -3,6 +3,8 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace eSSDSS
 {
@@ -32,7 +34,7 @@ namespace eSSDSS
             using (drawingContext)
             {
                 drawingContext.PushTransform(new ScaleTransform(scale, scale));
-                drawingContext.DrawRectangle(sourceBrush, null, new Rect(new Point(0, 0), new Point(actualWidth, actualHeight)));
+                drawingContext.DrawRectangle(sourceBrush, null, new Rect(new System.Windows.Point(0, 0), new System.Windows.Point(actualWidth, actualHeight)));
             }
             renderTarget.Render(drawingVisual);
 
@@ -65,5 +67,30 @@ namespace eSSDSS
             var path = new Uri(System.IO.Path.Combine(appdir, "SDSS_Screenshot.jpg"));
             return new BitmapImage(path);
         }
+
+        public static BitmapSource GDIsnap(this FrameworkElement source)
+        {
+            //Based on http://stackoverflow.com/a/3891991
+            //See also http://jevgenig.blogspot.com/2011/06/wpf-webbrowser-screenshot.html
+            var topLeftCorner = source.PointToScreen(new System.Windows.Point(0, 0));
+            var topLeftGdiPoint = new System.Drawing.Point((int)topLeftCorner.X, (int)topLeftCorner.Y);
+            var size = new System.Drawing.Size((int)source.ActualWidth, (int)source.ActualHeight);
+
+            var screenShot = new Bitmap((int)source.ActualWidth, (int)source.ActualHeight);
+
+            using (var graphics = Graphics.FromImage(screenShot))
+            {
+                graphics.CopyFromScreen(topLeftGdiPoint, new System.Drawing.Point(),
+                    size, CopyPixelOperation.SourceCopy);
+            }
+
+            screenShot.Save(@"SDSS_Screenshot.png", ImageFormat.Png);
+
+            // Load screenshot
+            String appdir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var path = new Uri(System.IO.Path.Combine(appdir, "SDSS_Screenshot.png"));
+            return new BitmapImage(path);
+        }
     }
 }
+

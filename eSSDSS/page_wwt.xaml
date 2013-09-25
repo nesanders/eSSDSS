@@ -9,5 +9,6 @@
 
     <Grid Height="820" Width="1030" MouseLeave="Grid_MouseLeave">
         <WebBrowser Height="620" HorizontalAlignment="Left" Margin="101,124,0,0" Name="wwt_web" VerticalAlignment="Top" Width="820" Initialized="wwt_web_Initialized" MouseUp="wwt_web_MouseUp" TouchLeave="wwt_web_TouchLeave" />
+        <my:SurfaceButton Content="Snap!" Height="23" HorizontalAlignment="Left" Margin="14,258,0,0" Name="button_snap" VerticalAlignment="Top" Width="75" Click="button_snap_Click" />
     </Grid>
 </Page>

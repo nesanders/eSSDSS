@@ -92,14 +92,13 @@ namespace eSSDSS
                 //snapshot snap = new snapshot();
                 //g_coords.image = new System.Drawing.Bitmap(snapshot.Utilities.CaptureWindow(wwt_web.Handle));
                 //g_coords.image = snapshot.Utilities.CaptureWindow(wwt_web.Handle);
-                g_coords.image = wwt_web.SaveAndBitmapSource();
+                g_coords.image = wwt_web.GDIsnap();
 
             }
             //else
             //{
             //    MessageBox.Show("Please wait - WWT not yet fully loaded.");
             //}
-            MessageBox.Show("RA:"+g_coords.w_RA);
 
         }
 
@@ -127,8 +126,12 @@ namespace eSSDSS
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
+            //wwt_GetCoordinates();
+        }
+
+        private void button_snap_Click(object sender, RoutedEventArgs e)
+        {
             wwt_GetCoordinates();
-            MessageBox.Show("pageunload");
         }
     }
 }
